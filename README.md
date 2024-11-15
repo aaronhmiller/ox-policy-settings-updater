@@ -24,9 +24,9 @@ Developer Tools (usually `ctrl-shift-I` or `cmd-opt-I` depending on your
 platform).
 
 From there, go to the "Network" tab and filter the traffic for
-`api.cloud.ox.security` (refresh the page if necessary) and from the Request Headers, 
-pull the Authorization Bearer Token (it'll start with "ey", base64 encoding for "{" 
-which all JWTs start with).
+`api.cloud.ox.security` (refresh the page if necessary) and from the Request
+Headers, pull the Authorization Bearer Token (it'll start with "ey", base64
+encoding for "{" which all JWTs start with).
 
 ##### Getting the Application Id
 
