@@ -168,7 +168,7 @@ async function setPolicySettings(
   }
 }
 
-function promptForAppId(): Promise<string[]> {
+async function promptForAppId(): Promise<string[]> {
   const appId = prompt("Please enter the App ID:") ?? "";
   if (!appId) {
     throw new Error("App ID is required");
