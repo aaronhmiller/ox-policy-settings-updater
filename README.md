@@ -17,6 +17,9 @@ Have your [OX Token](#getting-your-ox-token) and
 The script is preset to enable "monitor" status on _all_ policies, for both old
 and new issues, for the given application.
 
+To change the presets, update the `policySettingsInput` constant in the `main()`
+function (starting at about line 205).
+
 ##### Getting your OX Token
 
 Login to the [OX Dashboard](https://app.ox.security) and bring up your browser's
