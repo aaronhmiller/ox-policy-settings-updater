@@ -1,0 +1,8 @@
+query GetPolicySettings($getPolicySettingsInput: GetPolicySettingsInput) {
+   getPolicySettings(getPolicySettingsInput: $getPolicySettingsInput) {
+      settings {
+         policyId
+         policyName
+      }
+   }
+}
