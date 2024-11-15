@@ -9,8 +9,8 @@ for a given Application Id.
 
 ## Usage
 
-Have your [OX Token](#Getting your OX Token) and [Application Id](#Getting the
-Application Id) ready and run:
+Have your [OX Token](#getting-your-ox-token) and
+[Application Id](#getting-the-application-id) ready and run:
 
 `deno run -A ox-policy-settings-updater.ts`
 
