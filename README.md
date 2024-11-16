@@ -20,6 +20,12 @@ and new issues, for the given application.
 To change the presets, update the `policySettingsInput` constant in the `main()`
 function (starting at about line 205).
 
+## Additional materials
+The JSON files are included as a convenience to understand the bare APIs being
+used. Load the query and variables into your chosen GraphQL capable client, along
+with an authorization token and appId, and submit them to the 
+`https://api.cloud.ox.security/api/policy-service` endpoint.
+
 ##### Getting your OX Token
 
 Login to the [OX Dashboard](https://app.ox.security) and bring up your browser's
