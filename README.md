@@ -1,3 +1,4 @@
+[![OX Security Scan](https://github.com/aaronhmiller/ox-policy-settings-updater/actions/workflows/ox.yml/badge.svg)](https://github.com/aaronhmiller/ox-policy-settings-updater/actions/workflows/ox.yml)
 [![Deno](https://github.com/aaronhmiller/ox-policy-settings-updater/actions/workflows/deno.yml/badge.svg)](https://github.com/aaronhmiller/ox-policy-settings-updater/actions/workflows/deno.yml)
 # ox-policy-settings-updater
 
