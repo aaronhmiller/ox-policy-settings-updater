@@ -35,6 +35,15 @@ interface SetPolicySettingsResponse {
   };
 }
 
+// New type for policy options
+type PolicyOption = "block" | "monitor" | "disable";
+
+const POLICY_OPTION_IDS: Record<PolicyOption, string> = {
+  block: "1",
+  monitor: "2",
+  disable: "3",
+};
+
 async function promptForToken(): Promise<string> {
   const token = prompt("Please enter your authorization token:") ?? "";
   if (!token) {
@@ -65,11 +74,11 @@ async function getPolicySettings(
   };
 
   try {
-    console.log(
+    /*    console.log(
       "Making request with variables:",
       JSON.stringify(variables, null, 2),
     );
-
+    */
     const response = await fetch(
       "https://api.cloud.ox.security/api/policy-service",
       {
@@ -86,7 +95,7 @@ async function getPolicySettings(
     );
 
     const jsonResponse = await response.json();
-    console.log("Raw GraphQL Response:", JSON.stringify(jsonResponse, null, 2));
+    //console.log("Raw GraphQL Response:", JSON.stringify(jsonResponse, null, 2));
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -109,7 +118,7 @@ async function getPolicySettings(
       [],
     );
 
-    console.log(`Found ${allSettings.length} total policy settings`);
+    //console.log(`Found ${allSettings.length} total policy settings`);
     return allSettings;
   } catch (error) {
     console.error("Error fetching policy settings:", error);
@@ -148,11 +157,11 @@ async function setPolicySettings(
     );
 
     const jsonResponse = await response.json();
-    console.log(
+    /*    console.log(
       "Raw GraphQL Mutation Response:",
       JSON.stringify(jsonResponse, null, 2),
     );
-
+    */
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -180,6 +189,24 @@ async function promptForAppId(): Promise<string[]> {
   return [appId];
 }
 
+async function promptForPolicyOption(
+  promptMessage: string,
+): Promise<PolicyOption> {
+  const userInput = prompt(promptMessage)?.toLowerCase();
+
+  if (!userInput) {
+    throw new Error("Policy setting is required");
+  }
+
+  if (!["block", "monitor", "disable"].includes(userInput)) {
+    throw new Error(
+      "Invalid policy setting. Please choose 'block', 'monitor', or 'disable'",
+    );
+  }
+
+  return userInput as PolicyOption;
+}
+
 async function main() {
   try {
     // Prompt for authorization token
@@ -198,12 +225,20 @@ async function main() {
 
     console.log(`Retrieved ${policySettings.length} policy settings`);
 
+    // Prompt for policy options
+    console.log("Choose policy settings for new and existing issues");
+    const newIssuesOption = await promptForPolicyOption(
+      "Please choose a policy setting for NEW issues (block/monitor/disable):",
+    );
+    const oldIssuesOption = await promptForPolicyOption(
+      "Please choose a policy setting for EXISTING issues (block/monitor/disable):",
+    );
+
     // Create policy settings input array
-    // block: 1, monitor: 2, disable: 3
     const policySettingsInput: PolicySettingInput[] = policySettings.map(
       (setting) => ({
-        newOptionId: "2",
-        oldOptionId: "2",
+        newOptionId: POLICY_OPTION_IDS[newIssuesOption],
+        oldOptionId: POLICY_OPTION_IDS[oldIssuesOption],
         policyId: setting.policyId,
       }),
     );
@@ -211,8 +246,10 @@ async function main() {
     // Set policy settings for each policy ID
     console.log("Setting policy settings...");
     console.log(
-      `Preparing to update ${policySettingsInput.length} policy settings`,
+      `Preparing to update ${policySettingsInput.length} policy settings:`,
     );
+    console.log(`- New issues: "${newIssuesOption}" mode`);
+    console.log(`- Existing issues: "${oldIssuesOption}" mode`);
 
     const result = await setPolicySettings({
       appIds: appIdArray,
@@ -220,7 +257,7 @@ async function main() {
     }, authToken);
 
     console.log("Policy settings update complete.");
-    console.log("Modified settings:", result);
+    //    console.log("Modified settings:", result);
   } catch (error) {
     console.error("Error in main process:", error);
     if (error instanceof Error) {
