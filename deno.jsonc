@@ -2,7 +2,8 @@
   "fmt": {
     "exclude": [
       "*.json",
-      "*.md",
+      "*.jsonc",
+      "*.md"
     ]
   }
 }
