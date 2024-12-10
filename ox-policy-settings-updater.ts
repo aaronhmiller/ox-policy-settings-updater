@@ -453,7 +453,7 @@ const POLICY_OPTION_IDS: Record<PolicyOption, string> = {
   disable: "3",
 };
 
-async function promptForToken(): Promise<string> {
+function promptForToken(): Promise<string> {
   const token = prompt("Please enter your authorization token:") ?? "";
   if (!token) {
     throw new Error("Authorization token is required");
@@ -584,7 +584,7 @@ async function setPolicySettings(
   }
 }
 
-async function promptForAppId(): Promise<string[]> {
+function promptForAppId(): Promise<string[]> {
   const appId = prompt("Please enter the App ID:") ?? "";
   if (!appId) {
     throw new Error("App ID is required");
@@ -596,7 +596,7 @@ async function promptForAppId(): Promise<string[]> {
   return [appId];
 }
 
-async function promptForPolicyOption(
+function promptForPolicyOption(
   promptMessage: string,
 ): Promise<PolicyOption> {
   const userInput = prompt(promptMessage)?.toLowerCase();
@@ -614,7 +614,7 @@ async function promptForPolicyOption(
   return userInput as PolicyOption;
 }
 
-async function promptForAction(): Promise<"custom" | "reset"> {
+function promptForAction(): Promise<"custom" | "reset"> {
   const userInput = prompt(
     "Would you like to (1) set custom policy settings or (2) reset to defaults? Enter 1 or 2:",
   );
