@@ -9,13 +9,16 @@ for a given Application Id.
 
 ## Usage
 
-Have your [OX Token](#getting-your-ox-token) and
+Get your [OX Token](#getting-your-ox-token) and
 [Application Id](#getting-the-application-id) ready and run:
 
 `deno run -A ox-policy-settings-updater.ts`
 
-The script will prompt for new and old policy settings to be applied and then
-set the same status for _all_ such policies, for the given application.
+The script will prompt for either:
+
+1. customizing new and old policy settings to be applied and then set the same
+   status for _all_ such policies, for the given application.
+2. resetting the policies to their original default values.
 
 ## Additional materials
 
