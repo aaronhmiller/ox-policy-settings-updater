@@ -14,23 +14,20 @@ Have your [OX Token](#getting-your-ox-token) and
 
 `deno run -A ox-policy-settings-updater.ts`
 
-The script is preset to enable "monitor" status on _all_ policies, for both old
-and new issues, for the given application.
-
-To change the presets, update the `policySettingsInput` constant in the `main()`
-function (starting at about line 205).
+The script will prompt for new and old policy settings to be applied and then
+set the same status for _all_ such policies, for the given application.
 
 ## Additional materials
+
 The JSON files are included as a convenience to understand the bare APIs being
-used. Load the query and variables into your chosen GraphQL capable client, along
-with an authorization token and appId, and submit them to the 
+used. Load the query and variables into your chosen GraphQL capable client,
+along with an authorization token and appId, and submit them to the
 `https://api.cloud.ox.security/api/policy-service` endpoint.
 
 ##### Getting your OX Token
 
 Login to the [OX Dashboard](https://app.ox.security) and bring up your browser's
-Developer Tools (usually `ctrl-shift-I` or `cmd-opt-I` depending on your
-platform).
+Developer Tools (`ctrl-shift-I` or `cmd-opt-I` depending on your platform).
 
 From there, go to the "Network" tab and filter the traffic for
 `api.cloud.ox.security` (refresh the page if necessary) and from the Request
@@ -39,9 +36,9 @@ encoding for "{" which all JWTs start with).
 
 ##### Getting the Application Id
 
-Of course there's an API way, but for simplicity, try this browser-based method.
-Navigate to the application, select it, and in your location bar, note the query
-parameter `appId` . For instance,
+While there is an API way, for simplicity, try this browser-based method.
+Navigate to the application, select it, and in your browser's location bar, note
+the query parameter `appId` . For instance,
 `https://app.ox.security/applications?appId=353737035`. Selecting a different
 row will update which application is highlighted and therefore which appId is
 referenced in the URL's query parameter.

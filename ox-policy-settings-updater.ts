@@ -74,11 +74,11 @@ async function getPolicySettings(
   };
 
   try {
-/*    console.log(
+    /*    console.log(
       "Making request with variables:",
       JSON.stringify(variables, null, 2),
     );
-*/
+    */
     const response = await fetch(
       "https://api.cloud.ox.security/api/policy-service",
       {
@@ -157,11 +157,11 @@ async function setPolicySettings(
     );
 
     const jsonResponse = await response.json();
-/*    console.log(
+    /*    console.log(
       "Raw GraphQL Mutation Response:",
       JSON.stringify(jsonResponse, null, 2),
     );
-*/
+    */
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -189,7 +189,9 @@ async function promptForAppId(): Promise<string[]> {
   return [appId];
 }
 
-async function promptForPolicyOption(promptMessage: string): Promise<PolicyOption> {
+async function promptForPolicyOption(
+  promptMessage: string,
+): Promise<PolicyOption> {
   const userInput = prompt(promptMessage)?.toLowerCase();
 
   if (!userInput) {
@@ -255,7 +257,7 @@ async function main() {
     }, authToken);
 
     console.log("Policy settings update complete.");
-//    console.log("Modified settings:", result);
+    //    console.log("Modified settings:", result);
   } catch (error) {
     console.error("Error in main process:", error);
     if (error instanceof Error) {
