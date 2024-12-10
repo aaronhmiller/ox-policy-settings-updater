@@ -1,3 +1,4 @@
+[![Deno](https://github.com/aaronhmiller/ox-policy-settings-updater/actions/workflows/deno.yml/badge.svg)](https://github.com/aaronhmiller/ox-policy-settings-updater/actions/workflows/deno.yml)
 # ox-policy-settings-updater
 
 Enable bulk updating across all policies of all new &amp; old issues settings
